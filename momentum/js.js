@@ -8,20 +8,46 @@ const slidePrev = document.querySelector('.slide-prev ')
 const weatherIcon= document.querySelector('.weather-icon')
 const temperature = document.querySelector('.temperature')
 const weatherDescription = document.querySelector('.weather-description')
+const city = document.querySelector('.city')
 
-// "url()"
 
 async function getWeather() {
-    const url = 'https://api.openweathermap.org/data/2.5/weather?q=Минск&lang=ru&appid=65fd0659067eb109288af36316a63508&units=metric'
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=Минск&lang=ru&appid=65fd0659067eb109288af36316a63508&units=metric`;
     const res = await fetch(url)
     const data = await res.json()
     console.log(data.weather[0].id, data.weather[0].description, Math.round(data.main.temp))
-
+      weatherIcon.className = 'weather-icon owf'
      weatherIcon.classList.add(`owf-${data.weather[0].id}`)
     temperature.textContent = Math.round(data.main.temp) + ' °C'
     weatherDescription.textContent = data.weather[0].description
 }
-getWeather() 
+ getWeather() 
+
+async function getWeatherResult() {
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&lang=ru&appid=65fd0659067eb109288af36316a63508&units=metric`;
+    const res = await fetch(url)
+    const data = await res.json()
+    console.log(data.weather[0].id, data.weather[0].description, Math.round(data.main.temp))
+      weatherIcon.className = 'weather-icon owf'
+     weatherIcon.classList.add(`owf-${data.weather[0].id}`)
+    temperature.textContent = Math.round(data.main.temp) + ' °C'
+    weatherDescription.textContent = data.weather[0].description
+}
+
+city.addEventListener('change', getWeatherResult) 
+
+// function setLocalStorageCity() {
+//     localStorage.setItem('name', city.value);     
+// }
+// window.addEventListener('beforeunload', setLocalStorageCity)
+
+// function getLocalStorageCity() {
+//     if (localStorage.getItem('name')) {
+//         city.value = localStorage.getItem('name')
+//     }
+// }
+// window.addEventListener('load', getLocalStorageCity)  
+
 
 
 function showTime() {
@@ -254,53 +280,60 @@ setBg()
 // }, 1000);
 
 // const pause = document.querySelector('.pause')
-// const play = document.querySelector('.play')
-// const first = document.querySelector('.play-prev')
-// const last = document.querySelector('.play-next')
-// const audio = new Audio()
-// playNum = 0
+const play = document.querySelector('.play')
+const first = document.querySelector('.play-prev')
+const last = document.querySelector('.play-next')
+const audio = new Audio()
+playNum = 0
+let isPlay = false
 
-// function playAudio() {
-//      audio.src = "./sounds/Aqua Caelestis.mp3"
-    // audio.src = "./sounds/Ennio Morricone.mp3"
-    // audio.src = "./sounds/River Flows In You.mp3"
-    //  audio.src="./sounds/Summer Wind.mp3"
-//     audio.current = 0
-//     audio.play()
+function playAudio() {
+    if (!isPlay) {
+        audio.src = "./assets/sounds/Aqua Caelestis.mp3"
+        // audio.src = "./sounds/Ennio Morricone.mp3"
+        // audio.src = "./sounds/River Flows In You.mp3"
+        //  audio.src="./sounds/Summer Wind.mp3"
+        audio.current = 0
+        
+    audio.play()
+
+    } 
+}
+
+// playAudio()
+function pauseAudio() {
+     isPlay = false
+    audio.pause()
+}
+
+function firstAudio() {
     
-// }
-// function pauseAudio() {
-//     audio.pause()
-// }
+}
 
-// function firstAudio() {
+function lastAudio() {
     
-// }
-
-// function lastAudio() {
-    
-// }
+}
 
 
-// play.addEventListener('click', playAudio)
-// pause.addEventListener('click', pauseAudio )
+play.addEventListener('click', playAudio)
+pause.addEventListener('click', pauseAudio )
 
 
-// const playList = [
-//     {
-//     title: "Aqua Caelestis",
-//     srs:  "./sounds/Aqua Caelestis.mp3"
-//     },
-//     {
-//     title: "Ennio Morricone",
-//     srs: "./sounds/Ennio Morricone.mp3"
-//     },
-//     {
-//     title: "River Flows In You",
-//     srs: "./sounds/River Flows In You.mp3"
-//     },
-//     {
-//     title: "Summer Wind",
-//     srs: "./sounds/Summer Wind.mp3"
-//     }
-// ]
+const playList = [
+    {
+    title: "Aqua Caelestis",
+    srs:  "./sounds/Aqua Caelestis.mp3"
+    },
+    {
+    title: "Ennio Morricone",
+    srs: "./sounds/Ennio Morricone.mp3"
+    },
+    {
+    title: "River Flows In You",
+    srs: "./sounds/River Flows In You.mp3"
+    },
+    {
+    title: "Summer Wind",
+    srs: "./sounds/Summer Wind.mp3"
+    }
+]
