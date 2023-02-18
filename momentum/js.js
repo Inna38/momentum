@@ -8,18 +8,22 @@ const slidePrev = document.querySelector('.slide-prev ')
 const weatherIcon= document.querySelector('.weather-icon')
 const temperature = document.querySelector('.temperature')
 const weatherDescription = document.querySelector('.weather-description')
+const humidity = document.querySelector('.humidity')
+const wind = document.querySelector('.wind')
 const city = document.querySelector('.city')
 
 
 async function getWeather() {
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=Минск&lang=ru&appid=65fd0659067eb109288af36316a63508&units=metric`;
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=Минск&lang=en&appid=65fd0659067eb109288af36316a63508&units=metric`;
     const res = await fetch(url)
     const data = await res.json()
-    console.log(data.weather[0].id, data.weather[0].description, Math.round(data.main.temp))
+   
       weatherIcon.className = 'weather-icon owf'
      weatherIcon.classList.add(`owf-${data.weather[0].id}`)
     temperature.textContent = Math.round(data.main.temp) + ' °C'
-    weatherDescription.textContent = data.weather[0].description
+    weatherDescription.textContent = data.weather[0].description,
+        humidity.textContent = 'Humidity: ' + data.main.humidity + '%'
+    wind.textContent = 'Wind speed: ' + Math.round(data.wind.speed) + ' m/s'
 }
  getWeather() 
 
@@ -27,26 +31,28 @@ async function getWeatherResult() {
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&lang=ru&appid=65fd0659067eb109288af36316a63508&units=metric`;
     const res = await fetch(url)
     const data = await res.json()
-    console.log(data.weather[0].id, data.weather[0].description, Math.round(data.main.temp))
+  
       weatherIcon.className = 'weather-icon owf'
      weatherIcon.classList.add(`owf-${data.weather[0].id}`)
     temperature.textContent = Math.round(data.main.temp) + ' °C'
     weatherDescription.textContent = data.weather[0].description
+    humidity.textContent = 'Humidity: ' + data.main.humidity + '%'
+    wind.textContent = 'Wind speed: ' + Math.round(data.wind.speed) + ' m/s'
 }
 
 city.addEventListener('change', getWeatherResult) 
 
-// function setLocalStorageCity() {
-//     localStorage.setItem('name', city.value);     
-// }
-// window.addEventListener('beforeunload', setLocalStorageCity)
+function setLocalStorageCity() {
+    localStorage.setItem('city', city.value);     
+}
+window.addEventListener('beforeunload', setLocalStorageCity)
 
-// function getLocalStorageCity() {
-//     if (localStorage.getItem('name')) {
-//         city.value = localStorage.getItem('name')
-//     }
-// }
-// window.addEventListener('load', getLocalStorageCity)  
+function getLocalStorageCity() {
+    if (localStorage.getItem('city')) {
+        city.value = localStorage.getItem('city')
+    }
+}
+window.addEventListener('load', getLocalStorageCity)  
 
 
 
@@ -54,7 +60,11 @@ function showTime() {
     const date = new Date()
     const currentTime = date.toLocaleTimeString()
     time.textContent = currentTime
-    setTimeout(showTime, showDate, getTimeOfDay, 1000)
+    getTimeOfDay()
+    showDate()
+    
+    setTimeout(showTime, 1000)
+    getWeatherResult()
  }
 showTime()
  
@@ -280,7 +290,7 @@ setBg()
 // }, 1000);
 
 // const pause = document.querySelector('.pause')
-const play = document.querySelector('.play')
+let play = document.querySelector('.play')
 const first = document.querySelector('.play-prev')
 const last = document.querySelector('.play-next')
 const audio = new Audio()
@@ -295,28 +305,38 @@ function playAudio() {
         //  audio.src="./sounds/Summer Wind.mp3"
         audio.current = 0
         
-    audio.play()
-
-    } 
+        audio.play()
+   
+        console.log('11111')
+        
+    }
+   else  {
+  audio.pause()
+        console.log('jjjjjjj')
+    }
 }
 
-// playAudio()
-function pauseAudio() {
-     isPlay = false
-    audio.pause()
-}
+    
+// function pauseAudio() {
+    
+  
+// }
+// pauseAudio()
 
 function firstAudio() {
     
 }
 
 function lastAudio() {
-    
+for (let i = 0; index < playList.length; i++) {
+  
+        
+}
 }
 
 
-play.addEventListener('click', playAudio)
-pause.addEventListener('click', pauseAudio )
+ play.addEventListener('click', playAudio)
+// pause.addEventListener('click', pauseAudio )
 
 
 const playList = [
