@@ -10,25 +10,24 @@ const temperature = document.querySelector('.temperature')
 const weatherDescription = document.querySelector('.weather-description')
 const humidity = document.querySelector('.humidity')
 const wind = document.querySelector('.wind')
-const city = document.querySelector('.city')
+let city = document.querySelector('.city')
 
-
-async function getWeather() {
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=Минск&lang=en&appid=65fd0659067eb109288af36316a63508&units=metric`;
-    const res = await fetch(url)
-    const data = await res.json()
+// async function getWeather() {
+//     const url = `https://api.openweathermap.org/data/2.5/weather?q=Минск&lang=en&appid=65fd0659067eb109288af36316a63508&units=metric`;
+//     const res = await fetch(url)
+//     const data = await res.json()
    
-      weatherIcon.className = 'weather-icon owf'
-     weatherIcon.classList.add(`owf-${data.weather[0].id}`)
-    temperature.textContent = Math.round(data.main.temp) + ' °C'
-    weatherDescription.textContent = data.weather[0].description,
-        humidity.textContent = 'Humidity: ' + data.main.humidity + '%'
-    wind.textContent = 'Wind speed: ' + Math.round(data.wind.speed) + ' m/s'
-}
- getWeather() 
-
+//       weatherIcon.className = 'weather-icon owf'
+//      weatherIcon.classList.add(`owf-${data.weather[0].id}`)
+//     temperature.textContent = Math.round(data.main.temp) + ' °C'
+//     weatherDescription.textContent = data.weather[0].description,
+//         humidity.textContent = 'Humidity: ' + data.main.humidity + '%'
+//     wind.textContent = 'Wind speed: ' + Math.round(data.wind.speed) + ' m/s'
+// }
+//  getWeather() 
+city.value = 'Minsk'
 async function getWeatherResult() {
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&lang=ru&appid=65fd0659067eb109288af36316a63508&units=metric`;
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&lang=en&appid=65fd0659067eb109288af36316a63508&units=metric`;
     const res = await fetch(url)
     const data = await res.json()
   
@@ -39,8 +38,9 @@ async function getWeatherResult() {
     humidity.textContent = 'Humidity: ' + data.main.humidity + '%'
     wind.textContent = 'Wind speed: ' + Math.round(data.wind.speed) + ' m/s'
 }
+//  getWeatherResult()
 
-city.addEventListener('change', getWeatherResult) 
+ city.addEventListener('change', getWeatherResult) 
 
 function setLocalStorageCity() {
     localStorage.setItem('city', city.value);     
@@ -62,9 +62,9 @@ function showTime() {
     time.textContent = currentTime
     getTimeOfDay()
     showDate()
-    
+     getWeatherResult()
     setTimeout(showTime, 1000)
-    getWeatherResult()
+    
  }
 showTime()
  
@@ -293,6 +293,7 @@ setBg()
 let play = document.querySelector('.play')
 const first = document.querySelector('.play-prev')
 const last = document.querySelector('.play-next')
+let pause = document.querySelector('.pause')
 const audio = new Audio()
 playNum = 0
 let isPlay = false
@@ -306,54 +307,185 @@ function playAudio() {
         audio.current = 0
         
         audio.play()
+        //    play.classList.toggle('pause')
+     
+   isPlay = true
    
-        console.log('11111')
         
     }
-   else  {
+   else if (isPlay)  {
   audio.pause()
-        console.log('jjjjjjj')
+    //   pause.classList.remove('play')
+ isPlay = false
     }
 }
 
-    
-// function pauseAudio() {
-    
-  
+
+function toggleBtn(){
+    play.classList.toggle('pause')
+}
+
+play.addEventListener('click', toggleBtn)
+
+
+// let playListIndex = 0
+const playList = ['srs: "./assets/sounds/Aqua Caelestis.mp3"', 'srs: "./assets/sounds/Ennio Morricone.mp3"', 'srs: "./assets/sounds/River Flows In You.mp3"', 'srs:"./assets/sounds/Summer Wind.mp3"']
+function listPlay(playList) {
+    audio.src = `"./assets/sounds/${playList}.mp3"`
+}
+listPlay(playList[playNum])
+
+
+
+
+// function () {
+//     playListIndex++
+//     listPlay(playLists[playListIndex])
+//     playAudio()
+
 // }
-// pauseAudio()
-
-function firstAudio() {
-    
-}
-
+// let maricone = false
 function lastAudio() {
-for (let i = 0; index < playList.length; i++) {
-  
+   
+    //     playNum++
+    //     listPlay(playList[playNum])
+    //         // audio.src = `"./assets/sounds/${playList[playNum]}.mp3"`
+    //         playAudio()
+    // }
+    // for (let i = 1; i < playList.length; i++) {
+     
+        // if (i === 0) {
+        //     audio.src = "./assets/sounds/Aqua Caelestis.mp3"
+        //     audio.play()
+        //      console.log('000')
+        //     i++
+        // }
+    if (playNum === 0) {
         
-}
+        if (isPlay) {
+            audio.src = "./assets/sounds/Ennio Morricone.mp3"
+            audio.play()
+            playNum++
+            console.log('111')
+            isPlay = true
+        }
+         
+    }
+          
+       
+   else if (playNum === 1 && isPlay === true)  {
+    
+            audio.src = "./assets/sounds/River Flows In You.mp3"
+          audio.play()
+        console.log('222')
+        playNum++
+        // isPlay = false
+    }
+    
+    else if (playNum === 2 && isPlay === true) {
+    
+            audio.src = "./assets/sounds/Summer Wind.mp3"
+          audio.play()
+        console.log('333')
+        playNum++
+        // isPlay = true
+    }
+    
+    else if (playNum === 3 && isPlay === true) {
+    
+            audio.src = "./assets/sounds/Aqua Caelestis.mp3"
+          audio.play()
+        console.log('444')
+        playNum = 0
+    }
+    
+   
+    //    else if (i === 2) {
+    //         audio.src = "./assets/sounds/River Flows In You.mp3"
+    //         audio.play()
+    //         console.log('222')
+            
+    //     }
+    //    else if (i === 3) {
+    //         audio.src = "./assets/sounds/Summer Wind.mp3"
+    //         audio.play()
+    //         console.log('333')
+    //     }
+        // playLists[i]++
+        // console.log(playLists)
+        // playAudio()
+        //}
+    // }
 }
 
-
- play.addEventListener('click', playAudio)
+let lastNum = 4
+function firstAudio() {
+    if (lastNum === 4) {
+        
+        if (isPlay) {
+            audio.src = "./assets/sounds/Summer Wind.mp3"
+            audio.play()
+            lastNum--
+            console.log('444')
+            isPlay = true
+        }
+         
+    }
+          
+       
+   else if (lastNum === 3 && isPlay === true)  {
+    
+            audio.src = "./assets/sounds/River Flows In You.mp3"
+          audio.play()
+        console.log('33')
+        lastNum--
+        // isPlay = false
+    }
+    
+    else if (lastNum === 2 && isPlay === true) { 
+    
+            audio.src = "./assets/sounds/Ennio Morricone.mp3"
+          audio.play()
+        console.log('22')
+        lastNum--
+        // isPlay = true
+    }
+    
+    else if (lastNum === 1 && isPlay === true) {
+    
+            audio.src = "./assets/sounds/Aqua Caelestis.mp3"
+          audio.play()
+        console.log('11')
+        lastNum = 4
+    }
+}
+play.addEventListener('click', playAudio)
+last.addEventListener('click', lastAudio)
+ first.addEventListener('click', firstAudio)
 // pause.addEventListener('click', pauseAudio )
 
 
-const playList = [
-    {
-    title: "Aqua Caelestis",
-    srs:  "./sounds/Aqua Caelestis.mp3"
-    },
-    {
-    title: "Ennio Morricone",
-    srs: "./sounds/Ennio Morricone.mp3"
-    },
-    {
-    title: "River Flows In You",
-    srs: "./sounds/River Flows In You.mp3"
-    },
-    {
-    title: "Summer Wind",
-    srs: "./sounds/Summer Wind.mp3"
-    }
-]
+
+    // {
+    // title: "Aqua Caelestis",
+    // srs:  "./assets/sounds/Aqua Caelestis.mp3"
+    // },
+    // {
+    // title: "Ennio Morricone",
+    // srs: "./assets/sounds/Ennio Morricone.mp3"
+    // },
+    // {
+    // title: "River Flows In You",
+    // srs: "./assets/sounds/River Flows In You.mp3"
+    // },
+    // {
+    // title: "Summer Wind",
+    // srs: "./assets/sounds/Summer Wind.mp3"
+    // }
+//]
+// export default playList
+
+// const li = document.createElement('li')
+// li.classList.add('play-item');
+// li.textContent = 'Aqua Caelestis';
+// playListContainer.append('li')
