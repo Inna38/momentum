@@ -488,3 +488,206 @@ last.addEventListener('click', lastAudio)
 // li.classList.add('play-item');
 // li.textContent = 'Aqua Caelestis';
 // playListContainer.append('li')
+
+
+
+
+
+
+// pause.addEventListener('click', pauseAudio )
+
+
+
+    // {
+    // title: "Aqua Caelestis",
+    // srs:  "./assets/sounds/Aqua Caelestis.mp3"
+    // },
+    // {
+    // title: "Ennio Morricone",
+    // srs: "./assets/sounds/Ennio Morricone.mp3"
+    // },
+    // {
+    // title: "River Flows In You",
+    // srs: "./assets/sounds/River Flows In You.mp3"
+    // },
+    // {
+    // title: "Summer Wind",
+    // srs: "./assets/sounds/Summer Wind.mp3"
+    // }
+//]
+// export default playList
+
+// const li = document.createElement('li')
+// li.classList.add('play-item');
+// li.textContent = 'Aqua Caelestis';
+// playListContainer.append('li')
+
+
+
+
+// let aqua = document.querySelector('.aqua')
+// let ennio = document.querySelector('.ennio')
+// let river = document.querySelector('.river')
+// let summer = document.querySelector('.summer')
+
+// const audio = new Audio()
+// playNum = 0
+// let isPlay = false
+
+// function playAudio() {
+//     if (!isPlay) {
+//         audio.src = "./assets/sounds/Aqua Caelestis.mp3"
+     
+//         audio.current = 0
+       
+       
+//         audio.play()
+       
+     
+//    isPlay = true
+   
+        
+//     }
+//    else if (isPlay)  {
+//         audio.pause()
+//         aqua.classList.remove('active')
+//          ennio.classList.remove('active')
+//         river.classList.remove('active')
+//          summer.classList.remove('active')
+  
+//  isPlay = false
+//     }
+// }
+
+
+// function toggleBtn(){
+//     play.classList.toggle('pause')
+// }
+
+// play.addEventListener('click', toggleBtn)
+
+
+
+// const playList = ['srs: "./assets/sounds/Aqua Caelestis.mp3"', 'srs: "./assets/sounds/Ennio Morricone.mp3"', 'srs: "./assets/sounds/River Flows In You.mp3"', 'srs:"./assets/sounds/Summer Wind.mp3"']
+// function listPlay(playList) {
+//     audio.src = `"./assets/sounds/${playList}.mp3"`
+// }
+
+// function lastAudio() {
+   
+ 
+   
+//     play.classList.add('pause')
+//     if (playNum === 0) {
+        
+//         if (!isPlay || isPlay ) {
+//             audio.src = "./assets/sounds/Ennio Morricone.mp3"
+//             aqua.classList.remove('active')
+//         ennio.classList.add('active')
+//             audio.play()
+//             playNum++
+           
+//             console.log('111')
+            
+//         }
+         
+//     }
+          
+       
+//    else if (playNum === 1 )  {
+    
+//         audio.src = "./assets/sounds/River Flows In You.mp3"
+//           ennio.classList.remove('active')
+//            river.classList.add('active')
+         
+//           audio.play()
+//         console.log('222')
+//         playNum++
+       
+//     }
+    
+//     else if (playNum === 2 ) {
+    
+//         audio.src = "./assets/sounds/Summer Wind.mp3"
+//           river.classList.remove('active')
+//         summer.classList.add('active')
+//           audio.play()
+//         console.log('333')
+//         playNum++
+        
+//     }
+    
+//     else if (playNum === 3 ) {
+    
+//         audio.src = "./assets/sounds/Aqua Caelestis.mp3"
+//            summer.classList.remove('active')
+//         aqua.classList.add('active')
+//           audio.play()
+//         console.log('444')
+//         playNum = 0
+       
+//     }
+      
+// }
+
+// let lastNum = 4
+// function firstAudio() {
+
+//     play.classList.add('pause')
+//     if (lastNum === 4) {
+        
+//         if (!isPlay || isPlay) {
+//             audio.src = "./assets/sounds/Summer Wind.mp3"
+//             summer.classList.add('active')
+//               aqua.classList.remove('active')
+        
+//             audio.play()
+//             lastNum--
+//             console.log('444')
+//             isPlay = true
+//         }
+         
+//     }
+          
+       
+//    else if (lastNum === 3 )  {
+    
+//         audio.src = "./assets/sounds/River Flows In You.mp3"
+//         river.classList.add('active')
+//               summer.classList.remove('active')
+//           audio.play()
+//         console.log('33')
+//         lastNum--
+      
+//     }
+    
+//     else if (lastNum === 2 ) { 
+    
+//         audio.src = "./assets/sounds/Ennio Morricone.mp3"
+        
+//          ennio.classList.add('active')
+//               river.classList.remove('active')
+//           audio.play()
+//         console.log('22')
+//         lastNum--
+       
+//     }
+    
+//     else if (lastNum === 1 ) {
+    
+//         audio.src = "./assets/sounds/Aqua Caelestis.mp3"
+        
+//           aqua.classList.add('active')
+//               ennio.classList.remove('active')
+//           audio.play()
+//         console.log('11')
+//         lastNum = 4
+//     }
+// }
+// play.addEventListener('click', playAudio)
+// last.addEventListener('click', lastAudio)
+// first.addEventListener('click', firstAudio)
+ 
+//  addEventListener('ended', (event) => {
+//     audio.src = "./assets/sounds/Ennio Morricone.mp3" 
+//  })

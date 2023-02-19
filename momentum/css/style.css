@@ -51,8 +51,15 @@ body {
   opacity: .8;
   cursor: pointer;
   transition: .3s;
+   
 }
 
+.summer.active,
+.river.active,
+.ennio.active,
+.aqua.active{
+   color: #C5B358;
+}
 .play-item:hover {
   opacity: 1;
 }
@@ -63,11 +70,13 @@ body {
   left: 0;
   top: 2px;
   font-weight: 900;
+ 
+
 }
 
-.item-active::before {
+/* .item-active::before {
   color: #C5B358;
-}
+} */
 
 .player-icon,
 .slider-icon,
