@@ -27,16 +27,27 @@ let city = document.querySelector('.city')
 //  getWeather() 
 city.value = 'Minsk'
 async function getWeatherResult() {
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&lang=en&appid=65fd0659067eb109288af36316a63508&units=metric`;
-    const res = await fetch(url)
-    const data = await res.json()
+    try {
+        const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&lang=en&appid=65fd0659067eb109288af36316a63508&units=metric`;
+        const res = await fetch(url)
+        const data = await res.json()
   
-      weatherIcon.className = 'weather-icon owf'
-     weatherIcon.classList.add(`owf-${data.weather[0].id}`)
-    temperature.textContent = Math.round(data.main.temp) + ' °C'
-    weatherDescription.textContent = data.weather[0].description
-    humidity.textContent = 'Humidity: ' + data.main.humidity + '%'
-    wind.textContent = 'Wind speed: ' + Math.round(data.wind.speed) + ' m/s'
+        weatherIcon.className = 'weather-icon owf'
+        weatherIcon.classList.add(`owf-${data.weather[0].id}`)
+        temperature.textContent = Math.round(data.main.temp) + ' °C'
+        weatherDescription.textContent = data.weather[0].description
+        humidity.textContent = 'Humidity: ' + data.main.humidity + '%'
+        wind.textContent = 'Wind speed: ' + Math.round(data.wind.speed) + ' m/s'
+    }
+    catch (e) {
+        if (!city.value || city.value !== city) {
+            temperature.textContent = 'errou'
+            weatherDescription.textContent = 'errou'
+            humidity.textContent = 'errou'
+                 wind.textContent = 'errou'
+                  
+        }
+    }
 }
 //  getWeatherResult()
 
@@ -360,9 +371,11 @@ function lastAudio() {
         //      console.log('000')
         //     i++
         // }
+   
+    play.classList.add('pause')
     if (playNum === 0) {
         
-        if (isPlay) {
+        if (!isPlay || isPlay) {
             audio.src = "./assets/sounds/Ennio Morricone.mp3"
             audio.play()
             playNum++
@@ -373,7 +386,7 @@ function lastAudio() {
     }
           
        
-   else if (playNum === 1 && isPlay === true)  {
+   else if (playNum === 1 )  {
     
             audio.src = "./assets/sounds/River Flows In You.mp3"
           audio.play()
@@ -382,7 +395,7 @@ function lastAudio() {
         // isPlay = false
     }
     
-    else if (playNum === 2 && isPlay === true) {
+    else if (playNum === 2 ) {
     
             audio.src = "./assets/sounds/Summer Wind.mp3"
           audio.play()
@@ -391,38 +404,24 @@ function lastAudio() {
         // isPlay = true
     }
     
-    else if (playNum === 3 && isPlay === true) {
+    else if (playNum === 3 ) {
     
             audio.src = "./assets/sounds/Aqua Caelestis.mp3"
           audio.play()
         console.log('444')
         playNum = 0
+        // isPlay = false
     }
-    
-   
-    //    else if (i === 2) {
-    //         audio.src = "./assets/sounds/River Flows In You.mp3"
-    //         audio.play()
-    //         console.log('222')
-            
-    //     }
-    //    else if (i === 3) {
-    //         audio.src = "./assets/sounds/Summer Wind.mp3"
-    //         audio.play()
-    //         console.log('333')
-    //     }
-        // playLists[i]++
-        // console.log(playLists)
-        // playAudio()
-        //}
-    // }
+      
 }
 
 let lastNum = 4
 function firstAudio() {
+
+    play.classList.add('pause')
     if (lastNum === 4) {
         
-        if (isPlay) {
+        if (!isPlay || isPlay) {
             audio.src = "./assets/sounds/Summer Wind.mp3"
             audio.play()
             lastNum--
@@ -433,7 +432,7 @@ function firstAudio() {
     }
           
        
-   else if (lastNum === 3 && isPlay === true)  {
+   else if (lastNum === 3 )  {
     
             audio.src = "./assets/sounds/River Flows In You.mp3"
           audio.play()
@@ -442,7 +441,7 @@ function firstAudio() {
         // isPlay = false
     }
     
-    else if (lastNum === 2 && isPlay === true) { 
+    else if (lastNum === 2 ) { 
     
             audio.src = "./assets/sounds/Ennio Morricone.mp3"
           audio.play()
@@ -451,7 +450,7 @@ function firstAudio() {
         // isPlay = true
     }
     
-    else if (lastNum === 1 && isPlay === true) {
+    else if (lastNum === 1 ) {
     
             audio.src = "./assets/sounds/Aqua Caelestis.mp3"
           audio.play()
