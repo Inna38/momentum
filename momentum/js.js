@@ -41,10 +41,11 @@ async function getWeatherResult() {
     }
     catch (e) {
         if (!city.value || city.value !== city) {
-            temperature.textContent = 'errou'
-            weatherDescription.textContent = 'errou'
-            humidity.textContent = 'errou'
-                 wind.textContent = 'errou'
+        
+            temperature.textContent = 'Error'
+            weatherDescription.textContent = ''
+            humidity.textContent = ''
+                 wind.textContent = ''
                   
         }
     }
@@ -89,23 +90,25 @@ function showDate() {
 showDate()
 
 
+
+
 function getTimeOfDay() {
     const date = new Date()
     const hours = date.getHours()
-    if (hours < 4) {
+    if (hours < 6) {
      greeting.textContent = `Good nigth, `
     }
     else if (hours < 12) {
       greeting.textContent = `Good morning, `
     }
-    else if (hours < 17) {
-     greeting.textContent = `Good afternoon, `
+    else if (hours < 18) {
+     greeting.textContent = `gfgfgfg`
     }
     else if (hours < 24) {
      greeting.textContent = `Good evening, `
     }
 }
-getTimeOfDay()
+getTimeOfDay(en)
 
 
 function setLocalStorage() {
@@ -288,12 +291,6 @@ slidePrev.addEventListener('click', getSlaiderPrev)
   }
 setBg()
 
-
-
-
-
-
-
 // setInterval(() => {
 //     const date = new Date()
 //     const currentTime = date.toLocaleTimeString()
@@ -305,6 +302,12 @@ let play = document.querySelector('.play')
 const first = document.querySelector('.play-prev')
 const last = document.querySelector('.play-next')
 let pause = document.querySelector('.pause')
+
+let aqua = document.querySelector('.aqua')
+let ennio = document.querySelector('.ennio')
+let river = document.querySelector('.river')
+let summer = document.querySelector('.summer')
+
 const audio = new Audio()
 playNum = 0
 let isPlay = false
@@ -316,8 +319,9 @@ function playAudio() {
         // audio.src = "./sounds/River Flows In You.mp3"
         //  audio.src="./sounds/Summer Wind.mp3"
         audio.current = 0
-        
+        aqua.classList.add('active')
         audio.play()
+
         //    play.classList.toggle('pause')
      
    isPlay = true
@@ -325,7 +329,13 @@ function playAudio() {
         
     }
    else if (isPlay)  {
-  audio.pause()
+        audio.pause()
+        
+  aqua.classList.remove('active')
+        ennio.classList.remove('active')
+       river.classList.remove('active')
+        summer.classList.remove('active')
+
     //   pause.classList.remove('play')
  isPlay = false
     }
@@ -375,42 +385,50 @@ function lastAudio() {
     play.classList.add('pause')
     if (playNum === 0) {
         
-        if (!isPlay || isPlay) {
-            audio.src = "./assets/sounds/Ennio Morricone.mp3"
+       // if (!isPlay || isPlay) {
+        audio.src = "./assets/sounds/Ennio Morricone.mp3"
+          aqua.classList.remove('active')
+        ennio.classList.add('active')
             audio.play()
             playNum++
             console.log('111')
             isPlay = true
-        }
+       // }
          
     }
           
        
    else if (playNum === 1 )  {
     
-            audio.src = "./assets/sounds/River Flows In You.mp3"
+        audio.src = "./assets/sounds/River Flows In You.mp3"
+          ennio.classList.remove('active')
+            river.classList.add('active')
           audio.play()
         console.log('222')
         playNum++
-        // isPlay = false
+             isPlay = true
     }
     
     else if (playNum === 2 ) {
     
-            audio.src = "./assets/sounds/Summer Wind.mp3"
+        audio.src = "./assets/sounds/Summer Wind.mp3"
+         river.classList.remove('active')
+        summer.classList.add('active')
           audio.play()
         console.log('333')
         playNum++
-        // isPlay = true
+           isPlay = true
     }
     
     else if (playNum === 3 ) {
     
-            audio.src = "./assets/sounds/Aqua Caelestis.mp3"
+        audio.src = "./assets/sounds/Aqua Caelestis.mp3"
+        summer.classList.remove('active')
+       aqua.classList.add('active')
           audio.play()
         console.log('444')
         playNum = 0
-        // isPlay = false
+            isPlay = true
     }
       
 }
@@ -421,77 +439,56 @@ function firstAudio() {
     play.classList.add('pause')
     if (lastNum === 4) {
         
-        if (!isPlay || isPlay) {
-            audio.src = "./assets/sounds/Summer Wind.mp3"
+        //if (!isPlay || isPlay) {
+        audio.src = "./assets/sounds/Summer Wind.mp3"
+         summer.classList.add('active')
+              aqua.classList.remove('active')
             audio.play()
             lastNum--
             console.log('444')
             isPlay = true
-        }
+        //}
          
     }
           
        
    else if (lastNum === 3 )  {
     
-            audio.src = "./assets/sounds/River Flows In You.mp3"
+        audio.src = "./assets/sounds/River Flows In You.mp3"
+          river.classList.add('active')
+            summer.classList.remove('active')
           audio.play()
         console.log('33')
         lastNum--
-        // isPlay = false
+            isPlay = true
     }
     
     else if (lastNum === 2 ) { 
     
-            audio.src = "./assets/sounds/Ennio Morricone.mp3"
+        audio.src = "./assets/sounds/Ennio Morricone.mp3"
+        ennio.classList.add('active')
+          river.classList.remove('active')
           audio.play()
         console.log('22')
         lastNum--
-        // isPlay = true
+            isPlay = true
     }
     
     else if (lastNum === 1 ) {
     
-            audio.src = "./assets/sounds/Aqua Caelestis.mp3"
+        audio.src = "./assets/sounds/Aqua Caelestis.mp3"
+        aqua.classList.add('active')
+       ennio.classList.remove('active')
           audio.play()
         console.log('11')
         lastNum = 4
+            isPlay = true
     }
 }
 play.addEventListener('click', playAudio)
 last.addEventListener('click', lastAudio)
- first.addEventListener('click', firstAudio)
-// pause.addEventListener('click', pauseAudio )
-
-
-
-    // {
-    // title: "Aqua Caelestis",
-    // srs:  "./assets/sounds/Aqua Caelestis.mp3"
-    // },
-    // {
-    // title: "Ennio Morricone",
-    // srs: "./assets/sounds/Ennio Morricone.mp3"
-    // },
-    // {
-    // title: "River Flows In You",
-    // srs: "./assets/sounds/River Flows In You.mp3"
-    // },
-    // {
-    // title: "Summer Wind",
-    // srs: "./assets/sounds/Summer Wind.mp3"
-    // }
-//]
-// export default playList
-
-// const li = document.createElement('li')
-// li.classList.add('play-item');
-// li.textContent = 'Aqua Caelestis';
-// playListContainer.append('li')
-
-
-
-
+first.addEventListener('click', firstAudio)
+ 
 
 
 // pause.addEventListener('click', pauseAudio )
@@ -525,10 +522,40 @@ last.addEventListener('click', lastAudio)
 
 
 
-// let aqua = document.querySelector('.aqua')
-// let ennio = document.querySelector('.ennio')
-// let river = document.querySelector('.river')
-// let summer = document.querySelector('.summer')
+
+
+// pause.addEventListener('click', pauseAudio )
+
+
+
+    // {
+    // title: "Aqua Caelestis",
+    // srs:  "./assets/sounds/Aqua Caelestis.mp3"
+    // },
+    // {
+    // title: "Ennio Morricone",
+    // srs: "./assets/sounds/Ennio Morricone.mp3"
+    // },
+    // {
+    // title: "River Flows In You",
+    // srs: "./assets/sounds/River Flows In You.mp3"
+    // },
+    // {
+    // title: "Summer Wind",
+    // srs: "./assets/sounds/Summer Wind.mp3"
+    // }
+//]
+// export default playList
+
+// const li = document.createElement('li')
+// li.classList.add('play-item');
+// li.textContent = 'Aqua Caelestis';
+// playListContainer.append('li')
+
+
+
+
+
 
 // const audio = new Audio()
 // playNum = 0
@@ -550,10 +577,7 @@ last.addEventListener('click', lastAudio)
 //     }
 //    else if (isPlay)  {
 //         audio.pause()
-//         aqua.classList.remove('active')
-//          ennio.classList.remove('active')
-//         river.classList.remove('active')
-//          summer.classList.remove('active')
+//       
   
 //  isPlay = false
 //     }
@@ -582,8 +606,7 @@ last.addEventListener('click', lastAudio)
         
 //         if (!isPlay || isPlay ) {
 //             audio.src = "./assets/sounds/Ennio Morricone.mp3"
-//             aqua.classList.remove('active')
-//         ennio.classList.add('active')
+//           
 //             audio.play()
 //             playNum++
            
@@ -597,8 +620,7 @@ last.addEventListener('click', lastAudio)
 //    else if (playNum === 1 )  {
     
 //         audio.src = "./assets/sounds/River Flows In You.mp3"
-//           ennio.classList.remove('active')
-//            river.classList.add('active')
+//         
          
 //           audio.play()
 //         console.log('222')
@@ -609,8 +631,7 @@ last.addEventListener('click', lastAudio)
 //     else if (playNum === 2 ) {
     
 //         audio.src = "./assets/sounds/Summer Wind.mp3"
-//           river.classList.remove('active')
-//         summer.classList.add('active')
+//          
 //           audio.play()
 //         console.log('333')
 //         playNum++
@@ -620,8 +641,7 @@ last.addEventListener('click', lastAudio)
 //     else if (playNum === 3 ) {
     
 //         audio.src = "./assets/sounds/Aqua Caelestis.mp3"
-//            summer.classList.remove('active')
-//         aqua.classList.add('active')
+//            
 //           audio.play()
 //         console.log('444')
 //         playNum = 0
@@ -638,8 +658,7 @@ last.addEventListener('click', lastAudio)
         
 //         if (!isPlay || isPlay) {
 //             audio.src = "./assets/sounds/Summer Wind.mp3"
-//             summer.classList.add('active')
-//               aqua.classList.remove('active')
+//            
         
 //             audio.play()
 //             lastNum--
@@ -653,8 +672,7 @@ last.addEventListener('click', lastAudio)
 //    else if (lastNum === 3 )  {
     
 //         audio.src = "./assets/sounds/River Flows In You.mp3"
-//         river.classList.add('active')
-//               summer.classList.remove('active')
+//       
 //           audio.play()
 //         console.log('33')
 //         lastNum--
@@ -665,8 +683,7 @@ last.addEventListener('click', lastAudio)
     
 //         audio.src = "./assets/sounds/Ennio Morricone.mp3"
         
-//          ennio.classList.add('active')
-//               river.classList.remove('active')
+//          
 //           audio.play()
 //         console.log('22')
 //         lastNum--
@@ -677,8 +694,7 @@ last.addEventListener('click', lastAudio)
     
 //         audio.src = "./assets/sounds/Aqua Caelestis.mp3"
         
-//           aqua.classList.add('active')
-//               ennio.classList.remove('active')
+//           
 //           audio.play()
 //         console.log('11')
 //         lastNum = 4
