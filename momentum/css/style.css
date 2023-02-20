@@ -127,6 +127,17 @@ body {
   background-image: url("../assets/svg/play-next.svg");
 }
 
+
+.lang{
+  font-size: 20px;
+}
+.lang-en{
+  padding-right: 15px;
+  cursor: pointer;
+}
+.lang-ru{
+  cursor: pointer;
+}
 .weather {
   display: flex;
   flex-direction: column;
