@@ -1,15 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>momentum</title>
-    <link rel="stylesheet" href="./style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="assets/favicon.ico" rel="shortcut icon" />
+  <link rel="stylesheet" href="css/owfont-regular.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <title>momentum</title>
 </head>
 <body>
-
+ <!-- <audio src="./assets/sounds/Ennio Morricone.mp3"></audio>  -->
+ 
+  <header class="header">
     
- <script src="./js.js"></script>   
+    <div class="player">
+      <div class="player-controls">
+        <button class="play-prev player-icon"></button>
+        <button class="play player-icon"></button>
+        <button class="play-next player-icon"></button>
+      </div>
+      <ul class="play-list">
+                 <li class="play-item aqua">Aqua Caelestis</li>
+                <li class="play-item ennio">Ennio Morricone</li>
+                <li class="play-item river">River Flows In You</li>
+                <li class="play-item summer">Summer Wind</li>
+            </ul>
+      </ul>
+      </div>
+       <div  class="setting-hero"> SETTINGS
+      <img src="./assets/img/accordion_btn.svg" alt="" width="13px">
+        <!-- <button class="button-setting">Setting</button> -->
+        <div class="setting">  
+    <ul >
+      <li class="close-player">Close/Open player</li>
+      <!-- <li class="close-weather">Close weather</li> -->
+      <li class="close-time">Close/Open time</li>
+      <li class="close-date">Close/Open date</li>
+      <li class="close-greeting">Close/Open greeting</li>
+      <li class="close-quote">Close/Open quote</li>
+    </ul>
+    </div>
+     </div> 
+    <!-- <div class="lang">
+      <span class="lang-en">EN</span>
+      <span class="lang-ru">RU</span>
+    </div> -->
+    <!-- <div class="todo">
+  <div class="todo-input">
+    <input  class="todo-text" type="text">
+    <span class="todo-add"></span>
+  </div>
+      <select class="todo-option">
+   <option value="active">Active</option>
+   <option value="completed">Completed</option>
+   <option value="deleted">Deleted</option>
+      </select>
+      <ul class="todo-items" data-todo-option="active"></ul>
+    </div> -->
+
+
+     
+
+      <!-- <div class="setting">
+         <option >Close player</option>
+     <option value="active">Close weather</option>
+     <option class="close-time">Close time</option>
+     <option value="completed">Close date</option>
+     <option value="deleted">Close greeting</option>
+      <option value="deleted">Close quote</option>
+      </div> -->
+      
+      
+    <div class="weather">
+      <input type="text" class="city" />
+      <i class="weather-icon owf"></i>
+      <div class="weather-error"></div>
+      <div class="description-container">
+        <span class="temperature"></span>
+        <span class="weather-description"></span>
+        <span class="weather-humidity"></span>
+        <span class="weather-wind"></span>
+      </div>
+      <div class="wind"></div>
+      <div class="humidity"></div>
+    </div>
+  </header>
+  <main class="main">
+    
+    <div class="slider-icons">
+      <button class="slide-prev slider-icon"></button>
+      <button class="slide-next slider-icon"></button>
+    </div>
+    <time class="time"></time>
+    <date class="date"></date>
+    <div class="greeting-container">
+      <span class="greeting"></span>
+      <input  type="text" class="name" placeholder="[Enter name]"/>
+    </div>
+  </main>
+  <footer class="footer">
+    <button class="change-quote"></button>
+     <div>
+      <div class="quote"></div>
+      <div class="author"></div>
+    </div>
+   
+  </footer>
+  <script src="./js.js"></script> 
+
 </body>
 </html>
