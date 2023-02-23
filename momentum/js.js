@@ -726,14 +726,14 @@ closePlayer.addEventListener('click', e => {
 closeTime.addEventListener('click', e => {
   
     time.classList.toggle('active')
-    //   if (close) {
+    //   if (!close) {
     //     closeTime.textContent = 'open'
     // }
     //  closeTime.textContent = 'close'
 
-//     if (open) {
-//         closeTime.textContent = 'open'
-//     }
+    // if (!open) {
+    //     closeTime.textContent = 'close'
+    // }
 //  if (!open) {
 //         closeTime.textContent = 'close'
 //     }
@@ -753,17 +753,17 @@ closeTime.addEventListener('click', e => {
 
 
 
-function setLocalStorage() {
-    localStorage.setItem('closePlayer', player.value);     
-}
-window.addEventListener('beforeunload', setLocalStorage)
+// function setLocalStorageP() {
+//     localStorage.setItem('closePlayer', closePlayer.value);     
+// }
+// window.addEventListener('beforeunload', setLocalStorageP)
 
-function getLocalStorage() {
-    if (localStorage.getItem('closePlayer')) {
-        player.value = localStorage.getItem('closePlayer')
-    }
-}
-window.addEventListener('load', getLocalStorage)  
+// function getLocalStorageP() {
+//     if (localStorage.getItem('closePlayer')) {
+//         closePlayer.value = localStorage.getItem('closePlayer')
+//     }
+// }
+// window.addEventListener('load', getLocalStorageP)  
 
 
 // const todo = {
