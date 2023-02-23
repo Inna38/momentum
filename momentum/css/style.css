@@ -7,6 +7,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  list-style: none;
 }
 
 body {
@@ -283,7 +284,41 @@ body {
 .author {
   min-height: 20px;
 }
+.setting-hero{
+  cursor: pointer;
+}
+.player.active,
+.playLists.active
+.weather.active,
+.time.active,
+.date.active,
+.greeting.active,
 
+.quote.active{
+ visibility: hidden;
+ transition: 0.3s ease-in-out;
+}
+.setting{
+ display: none;
+ text-align: initial;
+ 
+}
+ .setting-hero.active .setting{
+ display: block;
+ cursor: pointer;
+}
+
+.close-player,
+.close-weather,
+.close-time,
+.close-date,
+.close-greeting,
+.close-quote{
+  padding: 3px 0;
+}
+.close-player{
+padding-top: 15px;
+}
 @media (max-width: 768px) {
   .time {
     min-height: 80px;
@@ -303,4 +338,20 @@ body {
     font-size: 32px;
     padding: 5px;
   }
+  .setting-hero{
+    display: none;
+  }
 }
+
+@media (max-width: 560px) {
+  .time {
+    min-height: 60px;
+    font-size: 52px;    
+  }
+
+  .greeting-container {
+    min-height: 40px;
+    font-size: 25px;
+  }
+ }
+

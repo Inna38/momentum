@@ -5,6 +5,7 @@ const name = document.querySelector ('.name')
 const body = document.querySelector('body')
 const slideNext = document.querySelector('.slide-next')
 const slidePrev = document.querySelector('.slide-prev ')
+const weather = document.querySelector('.weather')
 const weatherIcon= document.querySelector('.weather-icon')
 const temperature = document.querySelector('.temperature')
 const weatherDescription = document.querySelector('.weather-description')
@@ -45,7 +46,7 @@ async function getWeatherResult() {
         wind.textContent = 'Wind speed: ' + Math.round(data.wind.speed) + ' m/s'
     }
     catch (e) {
-        if (!city.value || city.value !== city) {
+        if ( city.value !== city) {
         
             temperature.textContent = 'Error'
             weatherDescription.textContent = ''
@@ -416,6 +417,8 @@ setBg()
 // }, 1000);
 
 // const pause = document.querySelector('.pause')
+let playLists = document.querySelector('.play-list')
+let player = document.querySelector('.player')
 let play = document.querySelector('.play')
 const first = document.querySelector('.play-prev')
 const last = document.querySelector('.play-next')
@@ -694,3 +697,104 @@ function quoteFn() {
 }
 
  changeQuote.addEventListener('click', quoteFn)
+
+
+const greetingContainer = document.querySelector('.greeting-input')
+const closePlayer = document.querySelector('.close-player')
+const closeWeather= document.querySelector('.close-weather')
+const closeTime = document.querySelector('.close-time')
+const closeDate = document.querySelector('.close-date')
+const closeGreeting = document.querySelector('.close-greeting')
+const closeQuote = document.querySelector('.close-quote')
+const settingHero = document.querySelector('.setting-hero')
+const setting = document.querySelectorAll('.setting')
+
+settingHero.addEventListener('click', e => {
+    settingHero.classList.toggle('active')
+   })
+
+
+closePlayer.addEventListener('click', e => {
+    player.classList.toggle('active')
+    playLists.classList.toggle('active')
+})
+// closeWeather.addEventListener('click', e => {
+//     closeWeather.classList.toggle('active')
+    
+    
+// })
+closeTime.addEventListener('click', e => {
+  
+    time.classList.toggle('active')
+    //   if (close) {
+    //     closeTime.textContent = 'open'
+    // }
+    //  closeTime.textContent = 'close'
+
+//     if (open) {
+//         closeTime.textContent = 'open'
+//     }
+//  if (!open) {
+//         closeTime.textContent = 'close'
+//     }
+    })
+ closeDate.addEventListener('click', e => {
+    dateStr.classList.toggle('active')
+ })
+
+ closeGreeting.addEventListener('click', e => {
+     greeting.classList.toggle('active')
+ 
+ })
+
+ closeQuote.addEventListener('click', e => {
+    quote.classList.toggle('active')
+})
+
+
+
+function setLocalStorage() {
+    localStorage.setItem('closePlayer', player.value);     
+}
+window.addEventListener('beforeunload', setLocalStorage)
+
+function getLocalStorage() {
+    if (localStorage.getItem('closePlayer')) {
+        player.value = localStorage.getItem('closePlayer')
+    }
+}
+window.addEventListener('load', getLocalStorage)  
+
+
+// const todo = {
+//     action(e) { },
+//     add() { },
+//     create(text) { },
+//     init() { },
+//     update() { },
+//     save() { }
+// };
+
+// function init() {
+//     const fromStorage = localStorage.getItem('todo')
+//     if (fromStorage) {
+//         document.querySelector('.todo-items')
+//     }
+//     document.querySelector('.todo-option')
+//     document.addEventListener('click', this.action.bind(this))
+// }
+// function create() {
+//     return `<li class="todo-item" data-todo-state="active">
+//     <span class="todo-task">${text}</span> 
+//     <span class="todo-action todo-action-restore" data-todo-action ="active"></span> 
+//     <span class="todo-action todo-action-complete" data-todo-action ="completed"></span> 
+//     <span class="todo-action todo-action-delete" data-todo-action ="deleted"></span></li>`
+// }
+// function save() {
+//     localStorage.setItem('todo', document.querySelector('.todo-items').innerHTML)
+// }
+// function update() {
+//     const option = document.querySelector('.todo-optios').value
+//     document.querySelector('.todo-items').dataset.todoOption = option
+//     document.querySelector('.todo-text').disabled = option !== 'active'
+// }
